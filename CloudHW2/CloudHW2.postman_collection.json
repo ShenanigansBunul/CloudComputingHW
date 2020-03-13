@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "d2053006-a33f-41a2-ba08-1cb0e1261f3d",
+		"name": "CloudHW2",
+		"description": "Exemple de apeluri catre API-ul facut in tema 2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Empty Board",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/create_board?width=4&height=5&name=board_1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"create_board"
+					],
+					"query": [
+						{
+							"key": "width",
+							"value": "4"
+						},
+						{
+							"key": "height",
+							"value": "5"
+						},
+						{
+							"key": "name",
+							"value": "board_1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Ruleset",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/create_ruleset?name=test_set&behavior=[[0,0,1,0,1,0,0,0,0],[0,0,1,1,0,0,0,0,0]]",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"create_ruleset"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "test_set"
+						},
+						{
+							"key": "behavior",
+							"value": "[[0,0,1,0,1,0,0,0,0],[0,0,1,1,0,0,0,0,0]]"
+						}
+					]
+				},
+				"description": "Behavior reprezinta o lista cu doua liste de cate 9 elemente. Prima lista reprezinta starea urmatoare a unei celule cu X vecini, unde X e indicele elementului din lista, daca aceasta este vie.\nA doua lista reprezinta acelasi lucru pentru o celula moarta.\nIn baza de date am inclus cu ID 1 setul implicit de reguli al Game of Life, reprezentat prin:\n[[0,0,0,1,0,0,0,0,0],[0,0,1,1,0,0,0,0,0]]"
+			},
+			"response": []
+		},
+		{
+			"name": "Import Board from JSON",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/import_board?name=board_2&board=[[1,0,1],[1,1,1],[0,1,0]]&id_rules=2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"import_board"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "board_2"
+						},
+						{
+							"key": "board",
+							"value": "[[1,0,1],[1,1,1],[0,1,0]]"
+						},
+						{
+							"key": "id_rules",
+							"value": "2"
+						}
+					]
+				},
+				"description": "Un board e reprezentat de o lista de liste ce contin doar 0 si 1 ca elemente."
+			},
+			"response": []
+		},
+		{
+			"name": "Tick",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/tick?name=board_2&count=3",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"tick"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "board_2"
+						},
+						{
+							"key": "count",
+							"value": "3"
+						}
+					]
+				},
+				"description": "Metoda prin care se \"joaca\" Game of Life. Trebuie precizat un ID sau nume, si in mod optional un \"count\", si se vor realiza count pasi pe boardul dat."
+			},
+			"response": []
+		},
+		{
+			"name": "Get Board",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/get_board?name=board_2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"get_board"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "board_2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Ruleset",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/get_ruleset?name=default",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"get_ruleset"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "default"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Boards",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/get_boards?desc=1&page=1&criteria=name",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"get_boards"
+					],
+					"query": [
+						{
+							"key": "desc",
+							"value": "1"
+						},
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "criteria",
+							"value": "name"
+						}
+					]
+				},
+				"description": "Se pot returna mai multe boarduri simultan. Este realizata paginare, cu pagini de 10 elemente. Exista 3 parametri optionali:\n'criteria' determina criteriul de sortare (id, name, etc). Implicit este id.\n'page' specifica pagina. Implicit este pagina 1\n'reverse' inverseaza ordinea sortarii"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Rulesets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/get_rulesets?page=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"get_rulesets"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						}
+					]
+				},
+				"description": "Returneaza mai multe rulesets. Parametru optional page, paginare de 10 elemente."
+			},
+			"response": []
+		},
+		{
+			"name": "Update Board",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/update_board/1/?name=delete_test",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"update_board",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "delete_test"
+						}
+					]
+				},
+				"description": "primul parametru de dupa update_board specifica id-ul boardului ce trebuie updatat, apoi perechile de key-value specifica valorile noi"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Cell",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/update_cell/1/?x=1&y=2&val=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"update_cell",
+						"1",
+						""
+					],
+					"query": [
+						{
+							"key": "x",
+							"value": "1"
+						},
+						{
+							"key": "y",
+							"value": "2"
+						},
+						{
+							"key": "val",
+							"value": "1"
+						}
+					]
+				},
+				"description": "primul parametru specifica id-ul boardului.\nurmatorii 3 specifica x si y al celulei ce trebuie modificata, iar val poate lua valoarea ori 1 ori 0, reprezentand valoarea noua."
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Board",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/delete_board?name=delete_test",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"delete_board"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "delete_test"
+						}
+					]
+				},
+				"description": "ID sau nume"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Ruleset",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/delete_ruleset?id=2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"delete_ruleset"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				},
+				"description": "ID sau nume"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
