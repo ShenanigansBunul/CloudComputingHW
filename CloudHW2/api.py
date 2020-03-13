@@ -102,6 +102,7 @@ class Database:
             "CREATE TABLE rules (id integer primary key autoincrement, name text unique, behavior text, created_at date, updated_at date)")
         c.execute(
             "CREATE TABLE boards (id integer primary key autoincrement, name text unique, content text, id_rules integer, created_at date, updated_at date, FOREIGN KEY(id_rules) REFERENCES rules(id))")
+        c.execute("INSERT INTO rules(name,behavior,created_at,updated_at) values('default','[[0,0,0,1,0,0,0,0,0],[0,0,1,1,0,0,0,0,0]]',date('now'),date('now'))")
         self.conn.commit()
 
     def drop_tables(self):
@@ -171,15 +172,6 @@ class Database:
                 map(lambda x: self.row_to_dict(x, ["id", "name", "behavior", "created_at", "updated_at"]),
                     rows))[0]
         return rows
-
-    def get_rules(self, params):
-        c = self.conn.cursor()
-        if 'id' in params.keys():
-            c.execute("SELECT * from rules where id = ?", (params['id'],))
-        elif 'name' in params.keys():
-            c.execute("SELECT * from rules where name = ?", (params['name'],))
-        rows = c.fetchall()
-        return list(map(lambda x: self.row_to_dict(x, ["id", "name", "behavior", "created_at", "updated_at"]), rows))[0]
 
     def create_board(self, params):
         c = self.conn.cursor()
@@ -392,8 +384,9 @@ class ServiceHandler(BaseHTTPRequestHandler):
         if len(b) < 1:
             return 404
         else:
-            r = db.get_rules({'id': int(b['id_rules'])})
-            if r is None:
+            print(b['id_rules'])
+            r = db.get_ruleset({'id': int(b['id_rules'])})
+            if len(r) == 0:
                 return 400
             else:
                 con = b['content']

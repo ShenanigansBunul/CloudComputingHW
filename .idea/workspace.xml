@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2b08ed4-5029-45dd-a921-a4212db7dc77" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CloudHW2/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/CloudHW2/api.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CloudHW2/gol.db" beforeDir="false" afterPath="$PROJECT_DIR$/CloudHW2/gol.db" afterDir="false" />
     </list>
@@ -35,8 +36,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CloudHW2/api.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="764">
-              <caret line="382" column="40" lean-forward="true" selection-start-line="382" selection-start-column="40" selection-end-line="382" selection-end-column="40" />
+            <state relative-caret-position="330">
+              <caret line="163" column="32" lean-forward="true" selection-start-line="163" selection-start-column="32" selection-end-line="163" selection-end-column="32" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -79,8 +80,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/CloudHW2/api.py" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/546d5080-6e28-4efe-9420-7f1632fadaa3/console.sql" />
+        <option value="$PROJECT_DIR$/CloudHW2/api.py" />
       </list>
     </option>
   </component>
@@ -183,12 +184,12 @@
       <updated>1583789997028</updated>
       <workItem from="1583789998207" duration="1849000" />
       <workItem from="1583872526677" duration="663000" />
-      <workItem from="1584101217316" duration="19720000" />
+      <workItem from="1584101217316" duration="21701000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22232000" />
+    <option name="totallyTimeSpent" value="24213000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -206,10 +207,10 @@
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12400636" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Database Console" visible="true" weight="0.33125487" />
+      <window_info anchor="bottom" id="Database Console" weight="0.33125487" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32735777" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3289166" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3289166" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3998441" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -218,20 +219,20 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32969603" />
       <window_info anchor="bottom" id="Database Changes" order="9" weight="0.32969603" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.32969603" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.289166" />
       <window_info anchor="bottom" id="Python Console" order="12" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.1836248" />
+      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.09578697" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CloudComputingHW$api.coverage" NAME="api Coverage Results" MODIFIED="1584120933196" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CloudHW2" />
+    <SUITE FILE_PATH="coverage/CloudComputingHW$api.coverage" NAME="api Coverage Results" MODIFIED="1584122994328" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/CloudHW2" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/CloudHW1/config.txt">
@@ -279,8 +280,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CloudHW2/api.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="764">
-          <caret line="382" column="40" lean-forward="true" selection-start-line="382" selection-start-column="40" selection-end-line="382" selection-end-column="40" />
+        <state relative-caret-position="330">
+          <caret line="163" column="32" lean-forward="true" selection-start-line="163" selection-start-column="32" selection-end-line="163" selection-end-column="32" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
