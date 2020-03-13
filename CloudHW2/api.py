@@ -247,9 +247,11 @@ class ServiceHandler(BaseHTTPRequestHandler):
     def get_boards(self, params):
         if 'page' not in params.keys():
             params['page'] = 1
-        if 'reverse' not in params.keys():
+        if 'desc' not in params.keys():
             params['desc'] = 0
         if 'criteria' not in params.keys():
+            params['criteria'] = "id"
+        elif params['criteria'] not in ["name", "updated_at", "created_at", "content"]:
             params['criteria'] = "id"
         return db.get_boards(params)
 
