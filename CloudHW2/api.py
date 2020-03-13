@@ -307,7 +307,7 @@ class ServiceHandler(BaseHTTPRequestHandler):
             return 400
         else:
             b = db.get_board({'id': good_id})
-            if b is None:
+            if len(b) < 1:
                 return 404
             else:
                 params['id'] = good_id
@@ -337,7 +337,7 @@ class ServiceHandler(BaseHTTPRequestHandler):
 
     def delete_board(self, params):
         if 'id' in params.keys() or 'name' in params.keys() and None not in params.values():
-            if db.get_board(params) is not None:
+            if len(db.get_board(params)) > 0:
                 db.delete_board(params)
             else:
                 return 404
@@ -347,7 +347,7 @@ class ServiceHandler(BaseHTTPRequestHandler):
 
     def delete_ruleset(self, params):
         if 'id' in params.keys() or 'name' in params.keys() and None not in params.values():
-            if db.get_ruleset(params) is not None:
+            if len(db.get_ruleset(params)) > 0:
                 db.delete_ruleset(params)
             else:
                 return 404
@@ -361,7 +361,7 @@ class ServiceHandler(BaseHTTPRequestHandler):
             return 400
         else:
             b = db.get_board({'id': good_id})
-            if b is None:
+            if len(b) < 1:
                 return 404
             else:
                 if 'x' in params.keys() and 'y' in params.keys() and 'val' in params.keys():
@@ -389,7 +389,7 @@ class ServiceHandler(BaseHTTPRequestHandler):
         b = []
         if 'id' in params.keys() or 'name' in params.keys() and None not in params.values():
             b = db.get_board(params)
-        if b is None:
+        if len(b) < 1:
             return 404
         else:
             r = db.get_rules({'id': int(b['id_rules'])})
@@ -407,7 +407,7 @@ class ServiceHandler(BaseHTTPRequestHandler):
                     return 400
                 for i in range(params['count']):
                     con = gol_tick(con, beh)
-                db.update_board({'id': params['id'], 'board': json.dumps(con)})
+                db.update_board({'id': b['id'], 'board': json.dumps(con)})
                 return 200
 
     def get_params(self, req):
@@ -470,6 +470,7 @@ class ServiceHandler(BaseHTTPRequestHandler):
 
     def do_PUT(self):
         req, params = self.get_params(self.path)
+        req = req.rstrip("/")
         req = req.split("/")
         if len(req) != 2:
             result = 400

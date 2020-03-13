@@ -265,7 +265,7 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "127.0.0.1:8080/update_board/1/?name=delete_test",
+					"raw": "127.0.0.1:8080/update_board/1?name=delete_test",
 					"host": [
 						"127",
 						"0",
@@ -275,8 +275,7 @@
 					"port": "8080",
 					"path": [
 						"update_board",
-						"1",
-						""
+						"1"
 					],
 					"query": [
 						{
@@ -348,6 +347,34 @@
 						{
 							"key": "name",
 							"value": "delete_test"
+						}
+					]
+				},
+				"description": "ID sau nume"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Board By ID",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/delete_board?id=2",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"delete_board"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2"
 						}
 					]
 				},
