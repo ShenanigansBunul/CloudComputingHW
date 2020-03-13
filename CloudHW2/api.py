@@ -122,7 +122,7 @@ class Database:
 
     def get_boards(self, params):
         c = self.conn.cursor()
-        if params['desc'] != 0:
+        if try_parse_int(params['desc']) == 1:
             c.execute("SELECT * from (SELECT * from boards order by ? desc) limit 10 offset ?",
                       (params['criteria'], int(params['page']) * 10 - 10,))
         else:
