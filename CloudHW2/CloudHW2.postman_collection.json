@@ -294,7 +294,7 @@
 				"method": "PUT",
 				"header": [],
 				"url": {
-					"raw": "127.0.0.1:8080/update_cell/1/?x=1&y=2&val=1",
+					"raw": "127.0.0.1:8080/update_cell/1?x=1&y=2&val=1",
 					"host": [
 						"127",
 						"0",
@@ -304,8 +304,7 @@
 					"port": "8080",
 					"path": [
 						"update_cell",
-						"1",
-						""
+						"1"
 					],
 					"query": [
 						{
@@ -407,6 +406,99 @@
 					]
 				},
 				"description": "ID sau nume"
+			},
+			"response": []
+		},
+		{
+			"name": "Import Glider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/import_board?name=glider&board=[[0,0,1,0,0,0,0,0,0],[1,0,1,0,0,0,0,0,0],[0,1,1,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]&id_rules=1",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"import_board"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "glider"
+						},
+						{
+							"key": "board",
+							"value": "[[0,0,1,0,0,0,0,0,0],[1,0,1,0,0,0,0,0,0],[0,1,1,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0]]"
+						},
+						{
+							"key": "id_rules",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tick Glider",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/tick?name=glider&count=6",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"tick"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "glider"
+						},
+						{
+							"key": "count",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Glider",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:8080/get_board?name=glider",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"get_board"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "glider"
+						}
+					]
+				}
 			},
 			"response": []
 		}
