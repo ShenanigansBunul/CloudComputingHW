@@ -1,6 +1,7 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import json
 import sqlite3
+import copy
 
 size_limit = 100
 tick_limit = 1000
@@ -39,7 +40,7 @@ def zeros_table(w, h):
 
 def gol_tick(con, beh):
     m = [-1, 0, 1]
-    new_board = con.copy()
+    new_board = copy.deepcopy(con)
     for i in range(len(con)):
         for j in range(len(con[0])):
             neighbours = 0
@@ -47,6 +48,7 @@ def gol_tick(con, beh):
                 for y in m:
                     if 0 <= i + x < len(con) and 0 <= j + y < len(con[0]) and not (x == 0 and y == 0):
                         if con[i + x][j + y] == 1:
+                            print(str(i+x)+ " "+str(j+y))
                             neighbours += 1
             if con[i][j] == 0:
                 new_board[i][j] = beh[0][neighbours]
@@ -122,12 +124,15 @@ class Database:
 
     def get_boards(self, params):
         c = self.conn.cursor()
+        print(try_parse_int(params['desc']))
         if try_parse_int(params['desc']) == 1:
-            c.execute("SELECT * from (SELECT * from boards order by ? desc) limit 10 offset ?",
-                      (params['criteria'], int(params['page']) * 10 - 10,))
+            print("yes)")
+            c.execute("SELECT * FROM (SELECT * from boards limit 10 offset ?) order by "+params['criteria']+" desc",
+                      (int(params['page']) * 10 - 10,))
         else:
-            c.execute("SELECT * from (SELECT * from boards order by ?) limit 10 offset ?",
-                      (params['criteria'], int(params['page']) * 10 - 10,))
+            print("no")
+            c.execute("SELECT * FROM (SELECT * from boards limit 10 offset ?) order by "+params['criteria'],
+                      (int(params['page']) * 10 - 10,))
         rows = c.fetchall()
         return list(
             map(lambda x: self.row_to_dict(x, ["id", "name", "content", "id_rules", "created_at", "updated_at"]), rows))
