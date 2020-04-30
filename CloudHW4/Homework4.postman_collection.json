@@ -1,0 +1,180 @@
+{
+	"info": {
+		"_postman_id": "0b922db7-c6b7-463d-995d-d6e8ff9b7940",
+		"name": "Homework4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Name\": \"neata\",\n\t\"Description\": \"This post is the first post in linux kernel series. Writing code to run in the kernel is different from user application. While developing in the kernel, you don’t write code from scratch, you need to implement one or more interfaces and register your implementation within the a kernel subsystem.\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:49389/api/file/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "49389",
+					"path": [
+						"api",
+						"file",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "upload",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "file",
+					"file": {
+						"src": "/D:/ss/aq7Gy0j_700bwp.webp"
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:49389/api/file/upload/uuid/f71503c7-894c-4202-bbea-779c3a9dabcb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "49389",
+					"path": [
+						"api",
+						"file",
+						"upload",
+						"uuid",
+						"f71503c7-894c-4202-bbea-779c3a9dabcb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "extern crate llvm_sys as llvm;\r\n\r\nuse std::mem;\r\n\r\nuse llvm::core::*;\r\nuse llvm::execution_engine::*;\r\nuse llvm::target::*;\r\n\r\nfn main() {\r\n    unsafe {\r\n        // Set up a context, module and builder in that context.\r\n        let context = LLVMContextCreate();\r\n        let module = LLVMModuleCreateWithNameInContext(b\"sum\\0\".as_ptr() as *const _, context);\r\n        let builder = LLVMCreateBuilderInContext(context);\r\n\r\n        // get a type for sum function\r\n        let i64t = LLVMInt64TypeInContext(context);\r\n        let mut argts = [i64t, i64t, i64t];\r\n        let function_type = LLVMFunctionType(i64t, argts.as_mut_ptr(), argts.len() as u32, 0);\r\n\r\n        // add it to our module\r\n        let function = LLVMAddFunction(module, b\"sum\\0\".as_ptr() as *const _, function_type);\r\n\r\n        // Create a basic block in the function and set our builder to generate\r\n        // code in it.\r\n        let bb = LLVMAppendBasicBlockInContext(context, function, b\"entry\\0\".as_ptr() as *const _);\r\n\r\n        LLVMPositionBuilderAtEnd(builder, bb);\r\n\r\n        // get the function's arguments\r\n        let x = LLVMGetParam(function, 0);\r\n        let y = LLVMGetParam(function, 1);\r\n        let z = LLVMGetParam(function, 2);\r\n\r\n        let sum = LLVMBuildAdd(builder, x, y, b\"sum.1\\0\".as_ptr() as *const _);\r\n        let sum = LLVMBuildAdd(builder, sum, z, b\"sum.2\\0\".as_ptr() as *const _);\r\n\r\n        // Emit a `ret void` into the function\r\n        LLVMBuildRet(builder, sum);\r\n\r\n        // done building\r\n        LLVMDisposeBuilder(builder);\r\n\r\n        // Dump the module as IR to stdout.\r\n        LLVMDumpModule(module);\r\n\r\n        // build an execution engine\r\n        let mut ee = mem::uninitialized();\r\n        let mut out = mem::zeroed();\r\n\r\n        // robust code should check that these calls complete successfully\r\n        // each of these calls is necessary to setup an execution engine which compiles to native\r\n        // code\r\n        LLVMLinkInMCJIT();\r\n        LLVM_InitializeNativeTarget();\r\n        LLVM_InitializeNativeAsmPrinter();\r\n\r\n        // takes ownership of the module\r\n        LLVMCreateExecutionEngineForModule(&mut ee, module, &mut out);\r\n\r\n        let addr = LLVMGetFunctionAddress(ee, b\"sum\\0\".as_ptr() as *const _);\r\n\r\n        let f: extern \"C\" fn(u64, u64, u64) -> u64 = mem::transmute(addr);\r\n\r\n        let x: u64 = 1;\r\n        let y: u64 = 1;\r\n        let z: u64 = 1;\r\n        let res = f(x, y, z);\r\n\r\n        println!(\"{} + {} + {} = {}\", x, y, z, res);\r\n\r\n        // Clean up the rest.\r\n        LLVMDisposeExecutionEngine(ee);\r\n        LLVMContextDispose(context);\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:49389/api/file/data/name/f71503c7-894c-4202-bbea-779c3a9dabcb",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "49389",
+					"path": [
+						"api",
+						"file",
+						"data",
+						"name",
+						"f71503c7-894c-4202-bbea-779c3a9dabcb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "query",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:49389/api/file/query/uuid/f71503c7-894c-4202-bbea-779c3a9dabcb/email/andreidaamian@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "49389",
+					"path": [
+						"api",
+						"file",
+						"query",
+						"uuid",
+						"f71503c7-894c-4202-bbea-779c3a9dabcb",
+						"email",
+						"andreidaamian@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "last10",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:49389/api/file/last/10/email/sergiiusalceanu@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "49389",
+					"path": [
+						"api",
+						"file",
+						"last",
+						"10",
+						"email",
+						"sergiiusalceanu@gmail.com"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "ba9d4bd4-52ac-4a24-863d-6d9b188a9f77",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "63a4454b-7ee5-4b67-830c-8e23bbd22d3e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

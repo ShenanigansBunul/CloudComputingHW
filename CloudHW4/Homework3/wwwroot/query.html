@@ -1,0 +1,25 @@
+<script>
+  async function on_submit() {
+    var uuid = document.getElementById('namee').value;
+    var config = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+    uuid_url = '/api/file/query/uuid/' + uuid + '/email/null'
+    var response = await fetch(uuid_url, config);
+
+    var output_field = document.getElementById('output');
+    output_field.innerText = JSON.stringify(await response.json(), null, 2);
+  }
+</script>
+
+<div>
+  <label for="namere">UUID:</label><br>
+  <textarea id="namee" name="namee" rows="2" cols="50"></textarea><br>
+
+  <button type="button" onclick="on_submit()">Submit</button>
+</div>
+
+<pre id="output"></pre> <br />

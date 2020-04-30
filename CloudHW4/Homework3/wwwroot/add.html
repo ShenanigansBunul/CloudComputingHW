@@ -1,0 +1,72 @@
+<script>
+  function read_file_async(file) {
+    return new Promise((resolve, reject) => {
+      let reader = new FileReader();
+
+      reader.onload = () => {
+        resolve(reader.result);
+      };
+
+      reader.onerror = reject;
+
+      reader.readAsArrayBuffer(file);
+    })
+  }
+
+  function on_file_chosen(input) {
+    name = input.files[0].name;
+    name_field = document.getElementById('namee');
+    name_field.value = name;
+  }
+
+  async function on_submit() {
+    var file = document.getElementById('file').files[0];
+    var bytes = await read_file_async(file);
+
+    const add_url = "/api/file/add";
+    var json = {
+      Name: document.getElementById('namee').value,
+      Description: document.getElementById('description').value
+    };
+    var data = JSON.stringify(json, null, 2);
+
+    var config = {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+    var response = await fetch(add_url, config);
+
+    var response_json = await response.json();
+
+    var output_field = document.getElementById('output');
+    output_field.innerText = response.statusText + '\n' + JSON.stringify(response_json, null, 2);
+
+    var config = {
+      method: 'POST',
+      body: bytes,
+    }
+    var response = await fetch(response_json.uploadUrl, config);
+
+    var output2 = document.getElementById('output2');
+    output2.href = '/api/file/query/uuid/' + response_json.uuid + '/email/null'
+  }
+</script>
+
+<div>
+  <label for="namere">Name:</label><br>
+  <textarea id="namee" name="namee" rows="2" cols="50"></textarea><br>
+
+  <label for="description">Description:</label><br>
+  <textarea name="description" id="description" rows="10" cols="50"></textarea><br>
+
+  <label for="file">File:</label><br>
+  <input type="file" id="file" name="file" onchange="on_file_chosen(this)" /><br>
+
+  <button type="button" onclick="on_submit()">Submit</button>
+</div>
+
+<pre id="output"></pre> <br />
+<a id="output2">query</a>

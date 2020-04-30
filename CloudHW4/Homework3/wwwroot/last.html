@@ -1,0 +1,26 @@
+<script>
+  async function on_submit() {
+    var number = document.getElementById('number').value;
+    var config = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }
+    uuid_url = '/api/file/last/' + number + '/email/null'
+    var response = await fetch(uuid_url, config);
+
+    var output_field = document.getElementById('output');
+    output_field.innerText = JSON.stringify(await response.json(), null, 2);
+  }
+</script>
+
+<div>
+  <label>Number:</label><br>
+  <textarea id="number" rows="2" type="number">3</textarea><br>
+
+  <button type="button" onclick="on_submit()">Submit</button>
+</div>
+
+<pre id="output"></pre>
+<br />

@@ -1,0 +1,27 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:49389/",
+      "sslPort": 0
+    }
+  },
+  "profiles": {
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchUrl": "api/values",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Homework3": {
+      "commandName": "Project",
+      "launchUrl": "http://localhost:5000/api/values",
+      "environmentVariables": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "D:\\facultate\\anul3sem2\\cloud\\Homework3\\Homework3/claud-12345-1a83624bd6d0.json",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
